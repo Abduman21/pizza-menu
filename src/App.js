@@ -1,25 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
-
+import React from 'react';
+import { useState } from 'react';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const firstName  [firstName, setfirstName] = useState("")
+const firstName  [lirstName, setlirstName] = useState("")
+
+  function updaetFname{
+
+  }
+  function updaetLname{
+
+  }
+return(
+  <div> 
+    {/* https://github.com/Abduman21/pizza-menu.git */}
+
+    <p>Hello {fname}{lname}</p>
+    < input name='updaetFname' placeholder='Fnmae' value={fname}/>
+    < input name='updaetLname' placeholder='Fnmae' value={lname}/>
+    <button>Submit</button>
+
+  </div>
+)
+
 }
+
+
 
 export default App;
