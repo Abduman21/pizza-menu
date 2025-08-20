@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pizza Menu</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Header -->
+	<header>
+		<div class="logo">
+			<img src="logo.png" alt="Pizza Logo">
+			<h1>Pizza Menu</h1>
+		</div>
+		<nav>
+			<a href="#">Home</a>
+			<a href="#">Menu</a>
+			<a href="#">Contact</a>
+			<span class="cart-indicator" aria-live="polite">Cart: <strong id="cartCount">0</strong></span>
+		</nav>
+	</header>
+
+	<!-- Search Bar -->
+	<div class="search-bar">
+		<input type="text" id="searchInput" placeholder="Search pizza..." aria-label="Search pizza by name">
+	</div>
+
+	<!-- Sort Bar -->
+	<div class="sort-bar">
+		<select id="sortSelect" aria-label="Sort pizzas">
+			<option value="default">Sort by</option>
+			<option value="price-asc">Price: Low to High</option>
+			<option value="price-desc">Price: High to Low</option>
+			<option value="name-asc">Name: A-Z</option>
+			<option value="name-desc">Name: Z-A</option>
+		</select>
+	</div>
+
+	<!-- Filter Buttons -->
+	<div class="filter-buttons">
+		<button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+		<button class="filter-btn" data-filter="veg" aria-pressed="false">Vegetarian</button>
+		<button class="filter-btn" data-filter="non-veg" aria-pressed="false">Non-Vegetarian</button>
+	</div>
+
+	<!-- Pizza Menu Section -->
+	<section id="pizzaMenu" class="pizza-menu">
+		<!-- Example Pizza Item -->
+		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
+			<img src="pizza-1.jpeg" alt="Margherita">
+			<div class="pizza-info">
+				<h3>Margherita</h3>
+				<p>Classic cheese and tomato pizza</p>
+				<p class="price">$8</p>
+				<button class="add-cart">Add to Cart</button>
+			</div>
+		</div>
+
+		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
+			<img src="pizza-2.jpeg" alt="Margherita">
+			<div class="pizza-info">
+				<h3>Margherita</h3>
+				<p>Classic cheese and tomato pizza</p>
+				<p class="price">$8</p>
+				<button class="add-cart">Add to Cart</button>
+			</div>
+		</div>
+
+		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
+			<img src="pizza-3.jpeg" alt="Margherita">
+			<div class="pizza-info">
+				<h3>Margherita</h3>
+				<p>Classic cheese and tomato pizza</p>
+				<p class="price">$8</p>
+				<button class="add-cart">Add to Cart</button>
+			</div>
+		</div>
+
+		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
+			<img src="pizza-4.jpeg" alt="Margherita">
+			<div class="pizza-info">
+				<h3>Margherita</h3>
+				<p>Classic cheese and tomato pizza</p>
+				<p class="price">$8</p>
+				<button class="add-cart">Add to Cart</button>
+			</div>
+		</div>
+
+		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
+			<img src="pizza-5.jpeg" alt="Margherita">
+			<div class="pizza-info">
+				<h3>Margherita</h3>
+				<p>Classic cheese and tomato pizza</p>
+				<p class="price">$8</p>
+				<button class="add-cart">Add to Cart</button>
+			</div>
+		</div>
+
+		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
+			<img src="pizza-6.jpeg" alt="Margherita">
+			<div class="pizza-info">
+				<h3>Margherita</h3>
+				<p>Classic cheese and tomato pizza</p>
+				<p class="price">$8</p>
+				<button class="add-cart">Add to Cart</button>
+			</div>
+		</div>
+
+		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
+			<img src="pizza-7.jpeg" alt="Margherita">
+			<div class="pizza-info">
+				<h3>Margherita</h3>
+				<p>Classic cheese and tomato pizza</p>
+				<p class="price">$8</p>
+				<button class="add-cart">Add to Cart</button>
+			</div>
+		</div>
+
+		<!-- Example: Pepperoni -->
+		<div class="pizza-item" data-name="Pepperoni" data-type="non-veg" data-price="10">
+			<img src="pizza-8.jpeg" alt="Pepperoni">
+			<div class="pizza-info">
+				<h3>Pepperoni</h3>
+				<p>Cheese, tomato, and pepperoni</p>
+				<p class="price">$10</p>
+				<button class="add-cart">Add to Cart</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- Cart Section -->
+	<section class="cart" aria-live="polite">
+		<h2>Cart <span id="cartCountInline">(0)</span></h2>
+		<ul id="cartItems"></ul>
+		<p>Total: $<span id="totalPrice">0</span></p>
+		<div class="cart-actions">
+			<button id="clearCart" type="button">Clear Cart</button>
+			<button id="checkoutBtn" type="button">Checkout</button>
+		</div>
+	</section>
+
+	<!-- Toasts and Utilities -->
+	<div id="toaster" class="toaster" aria-live="polite" aria-atomic="true"></div>
+	<button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">↑</button>
+
+	<!-- Footer -->
+	<footer>
+		<p>Contact us: info@pizzamenu.com</p>
+	</footer>
+
+	<script src="script.js"></script>
+</body>
+</html>
