@@ -6,12 +6,7 @@ function App() {
 const firstName  [firstName, setfirstName] = useState("")
 const firstName  [lirstName, setlirstName] = useState("")
 
-  function updaetFname{
-
-  }
-  function updaetLname{
-
-  }
+  
 return(
   <div> 
     {/* https://github.com/Abduman21/pizza-menu.git */}
