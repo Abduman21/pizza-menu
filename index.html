@@ -1,174 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pizza Menu</title>
-	<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FORNO | Artisan Pizza Kitchen</title>
+  <meta name="description" content="FORNO Artisan Pizza Kitchen — Stone-baked, handcrafted pizzas made with slow-fermented dough and the freshest ingredients. Order online for delivery or pickup." />
+  <meta name="theme-color" content="#1a1a1a" />
+  <meta property="og:title" content="FORNO | Artisan Pizza Kitchen" />
+  <meta property="og:description" content="Stone-Baked. Handcrafted. Unforgettable." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-	<!-- Header -->
-	<header>
-		<div class="logo">
-			<img src="logo.png" alt="Pizza Logo">
-			<h1>Pizza Menu</h1>
-		</div>
-		<nav>
-			<a href="#">Home</a>
-			<a href="#">Menu</a>
-			<a href="#">Contact</a>
-			<span class="cart-indicator" aria-live="polite">Cart: <strong id="cartCount">0</strong></span>
-		</nav>
-	</header>
 
-	<!-- Search Bar -->
-	<div class="search-bar">
-		<input type="text" id="searchInput" placeholder="Search pizza..." aria-label="Search pizza by name">
-	</div>
+  <!-- ======== HEADER ======== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#" class="logo" aria-label="FORNO — Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15" fill="#c0392b" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="16" cy="16" r="10" fill="#e8d5b0" stroke="#c0392b" stroke-width="1"/>
+            <circle cx="12" cy="13" r="2" fill="#c0392b" opacity="0.7"/>
+            <circle cx="19" cy="11" r="1.5" fill="#c0392b" opacity="0.7"/>
+            <circle cx="16" cy="19" r="2" fill="#c0392b" opacity="0.7"/>
+            <circle cx="11" cy="19" r="1.5" fill="#2d5a27" opacity="0.8"/>
+            <circle cx="21" cy="17" r="1.5" fill="#2d5a27" opacity="0.8"/>
+          </svg>
+        </span>
+        <div class="logo-text">
+          <span class="logo-name">FORNO</span>
+          <span class="logo-sub">Artisan Pizza Kitchen</span>
+        </div>
+      </a>
 
-	<!-- Sort Bar -->
-	<div class="sort-bar">
-		<select id="sortSelect" aria-label="Sort pizzas">
-			<option value="default">Sort by</option>
-			<option value="price-asc">Price: Low to High</option>
-			<option value="price-desc">Price: High to Low</option>
-			<option value="name-asc">Name: A-Z</option>
-			<option value="name-desc">Name: Z-A</option>
-		</select>
-	</div>
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="#hero" class="nav-link">Home</a></li>
+          <li><a href="#menu" class="nav-link">Menu</a></li>
+          <li><a href="#specials" class="nav-link">Specials</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
 
-	<!-- Filter Buttons -->
-	<div class="filter-buttons">
-		<button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
-		<button class="filter-btn" data-filter="veg" aria-pressed="false">Vegetarian</button>
-		<button class="filter-btn" data-filter="non-veg" aria-pressed="false">Non-Vegetarian</button>
-	</div>
+      <div class="header-actions">
+        <button class="icon-btn" id="searchToggleBtn" aria-label="Toggle search" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button class="icon-btn cart-btn" id="cartToggleBtn" aria-label="Open cart" aria-haspopup="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
+        </button>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
 
-	<!-- Pizza Menu Section -->
-	<section id="pizzaMenu" class="pizza-menu">
-		<!-- Example Pizza Item -->
-		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
-			<img src="assets/pizza-1.jpeg" alt="Margherita">
-			<div class="pizza-info">
-				<h3>Margherita</h3>
-				<p>Classic cheese and tomato pizza</p>
-				<p class="price">$8</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
+    <!-- Search overlay -->
+    <div class="search-overlay" id="searchOverlay" role="search" aria-hidden="true">
+      <div class="container">
+        <input type="search" id="searchInput" placeholder="Search by name, ingredient or category…" aria-label="Search pizzas" autocomplete="off" />
+        <button class="icon-btn" id="searchCloseBtn" aria-label="Close search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
-			<img src="assets/pizza-2.jpeg" alt="Margherita">
-			<div class="pizza-info">
-				<h3>Margherita</h3>
-				<p>Classic cheese and tomato pizza</p>
-				<p class="price">$8</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
+  <main>
 
-		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
-			<img src="assets/pizza-3.jpeg" alt="Margherita">
-			<div class="pizza-info">
-				<h3>Margherita</h3>
-				<p>Classic cheese and tomato pizza</p>
-				<p class="price">$8</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
+    <!-- ======== HERO ======== -->
+    <section class="hero" id="hero" aria-label="Welcome to FORNO">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <p class="hero-label">🔥 Stone-fired since 2012</p>
+          <h1 class="hero-headline">Crafted by Fire.<br>Made to Be<br><em>Remembered.</em></h1>
+          <p class="hero-sub">Hand-stretched dough, carefully selected ingredients, and pizzas baked until perfectly crisp in our traditional stone oven.</p>
+          <div class="hero-cta">
+            <a href="#menu" class="btn btn-primary">Order Now</a>
+            <a href="#menu" class="btn btn-ghost">View Menu</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item">
+              <span class="trust-icon">⭐</span>
+              <div><strong>4.9</strong><small>Rating</small></div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">⚡</span>
+              <div><strong>25 min</strong><small>Avg. delivery</small></div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">🌿</span>
+              <div><strong>Fresh</strong><small>Ingredients</small></div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">🪨</span>
+              <div><strong>Stone-baked</strong><small>Daily</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <div class="hero-image-ring"></div>
+          <img src="assets/pizza-1.jpeg" alt="Signature stone-baked pizza at FORNO" class="hero-pizza-img" width="520" height="520" />
+          <div class="hero-badge">
+            <span class="badge-top">Chef's</span>
+            <span class="badge-bottom">Choice</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
-			<img src="assets/pizza-4.jpeg" alt="Margherita">
-			<div class="pizza-info">
-				<h3>Margherita</h3>
-				<p>Classic cheese and tomato pizza</p>
-				<p class="price">$8</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
+    <!-- ======== CATEGORIES ======== -->
+    <section class="categories-section" id="categories" aria-label="Pizza categories">
+      <div class="container">
+        <div class="section-header">
+          <h2>What are you craving?</h2>
+          <p>Pick a style, we'll handle the rest.</p>
+        </div>
+        <div class="category-chips" role="group" aria-label="Filter by category">
+          <button class="chip active" data-filter="all" aria-pressed="true">🍕 All</button>
+          <button class="chip" data-filter="popular" aria-pressed="false">🔥 Popular</button>
+          <button class="chip" data-filter="vegetarian" aria-pressed="false">🌿 Vegetarian</button>
+          <button class="chip" data-filter="chicken" aria-pressed="false">🍗 Chicken</button>
+          <button class="chip" data-filter="beef" aria-pressed="false">🥩 Beef</button>
+          <button class="chip" data-filter="spicy" aria-pressed="false">🌶 Spicy</button>
+          <button class="chip" data-filter="classic" aria-pressed="false">⭐ Classic</button>
+          <button class="chip" data-filter="premium" aria-pressed="false">👑 Premium</button>
+        </div>
+      </div>
+    </section>
 
-		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
-			<img src="assets/pizza-5.jpeg" alt="Margherita">
-			<div class="pizza-info">
-				<h3>Margherita</h3>
-				<p>Classic cheese and tomato pizza</p>
-				<p class="price">$8</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
+    <!-- ======== MENU ======== -->
+    <section class="menu-section" id="menu" aria-label="Pizza menu">
+      <div class="container">
+        <div class="menu-toolbar">
+          <div class="menu-results-info" id="menuResultsInfo" aria-live="polite"></div>
+          <div class="sort-wrap">
+            <label for="sortSelect" class="sr-only">Sort pizzas</label>
+            <select id="sortSelect" aria-label="Sort pizzas">
+              <option value="default">Recommended</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating-desc">Top Rated</option>
+              <option value="name-asc">Name: A–Z</option>
+            </select>
+          </div>
+        </div>
 
-		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
-			<img src="assets/pizza-6.jpeg" alt="Margherita">
-			<div class="pizza-info">
-				<h3>Margherita</h3>
-				<p>Classic cheese and tomato pizza</p>
-				<p class="price">$8</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
+        <div class="pizza-grid" id="pizzaGrid" role="list" aria-label="Pizza items"></div>
 
-		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
-			<img src="assets/pizza-7.jpeg" alt="Margherita">
-			<div class="pizza-info">
-				<h3>Margherita</h3>
-				<p>Classic cheese and tomato pizza</p>
-				<p class="price">$8</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
+        <div class="empty-state" id="emptyState" hidden aria-live="polite">
+          <div class="empty-state-icon">🍕</div>
+          <h3>No pizzas found</h3>
+          <p>Try adjusting your search or filter — there's always something delicious waiting.</p>
+          <button class="btn btn-outline" id="resetFiltersBtn">Clear Filters</button>
+        </div>
+      </div>
+    </section>
 
-		<!-- Example: Pepperoni -->
-		<div class="pizza-item" data-name="Pepperoni" data-type="non-veg" data-price="10">
-			<img src="assets/pizza-8.jpeg" alt="Pepperoni">
-			<div class="pizza-info">
-				<h3>Pepperoni</h3>
-				<p>Cheese, tomato, and pepperoni</p>
-				<p class="price">$10</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
+    <!-- ======== CHEF'S SPECIALS ======== -->
+    <section class="specials-section" id="specials" aria-label="Chef's specials">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">From our kitchen</p>
+          <h2>Chef's Specials</h2>
+          <p>Pizzas our head chef is most proud of this season.</p>
+        </div>
+        <div class="specials-grid" id="specialsGrid"></div>
+      </div>
+    </section>
 
-		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
-			<img src="assets/pizza-9.jpeg" alt="Margherita">
-			<div class="pizza-info">
-				<h3>Margherita</h3>
-				<p>Classic cheese and tomato pizza</p>
-				<p class="price">$8</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
+    <!-- ======== WHY US ======== -->
+    <section class="whyus-section" aria-label="Why choose FORNO">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why FORNO?</h2>
+          <p>More than just pizza — it's a commitment to craft.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3>Stone-Baked Daily</h3>
+            <p>Every pizza is baked in our traditional wood-fired stone oven, reaching 480°C for the perfect crust.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2"/><path d="M18 2h3"/><path d="M18 8h3"/><path d="M18 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+            </div>
+            <h3>Fresh Ingredients</h3>
+            <p>We source from local farms and Italian importers. No compromises on quality — ever.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Fast Delivery</h3>
+            <p>Hot and fresh at your door in under 30 minutes. Guaranteed or your next delivery is free.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+            </div>
+            <h3>Made to Order</h3>
+            <p>We never batch-cook. Every pizza is prepared fresh the moment your order is placed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<div class="pizza-item" data-name="Margherita" data-type="veg" data-price="8">
-			<img src="assets/pizza-10.jpeg" alt="Margherita">
-			<div class="pizza-info">
-				<h3>Margherita</h3>
-				<p>Classic cheese and tomato pizza</p>
-				<p class="price">$8</p>
-				<button class="add-cart">Add to Cart</button>
-			</div>
-		</div>
-	</section>
+    <!-- ======== PROMO BANNER ======== -->
+    <section class="promo-banner" aria-label="Current promotion">
+      <div class="container promo-inner">
+        <div class="promo-text">
+          <p class="promo-label">This Week's Deal</p>
+          <h2>Friday Pizza Night 🍕</h2>
+          <p>Order any two large pizzas and get <strong>free delivery</strong> — every Friday, no code needed.</p>
+          <a href="#menu" class="btn btn-primary">Order Now</a>
+        </div>
+        <div class="promo-visual" aria-hidden="true">
+          <img src="assets/pizza-5.jpeg" alt="" role="presentation" loading="lazy" />
+        </div>
+      </div>
+    </section>
 
-	<!-- Cart Section -->
-	<section class="cart" aria-live="polite">
-		<h2>Cart <span id="cartCountInline">(0)</span></h2>
-		<ul id="cartItems"></ul>
-		<p>Total: $<span id="totalPrice">0</span></p>
-		<div class="cart-actions">
-			<button id="clearCart" type="button">Clear Cart</button>
-			<button id="checkoutBtn" type="button">Checkout</button>
-		</div>
-	</section>
+    <!-- ======== TESTIMONIALS ======== -->
+    <section class="testimonials-section" aria-label="Customer reviews">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">What people say</p>
+          <h2>Real Reviews</h2>
+          <p>From real guests of FORNO — unedited, unfiltered.</p>
+        </div>
+        <div class="testimonials-grid">
+          <article class="testimonial-card">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>"The Truffle Mushroom is absolutely unreal. Crispy crust, earthy truffle — I order it every single week."</blockquote>
+            <footer class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">S</div>
+              <div>
+                <strong>Sofia M.</strong>
+                <small>Regular customer since 2022</small>
+              </div>
+            </footer>
+          </article>
+          <article class="testimonial-card">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>"Best pizza in the city. Period. The dough tastes like something from a proper Neapolitan kitchen. Fast delivery too."</blockquote>
+            <footer class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">J</div>
+              <div>
+                <strong>James K.</strong>
+                <small>Verified guest</small>
+              </div>
+            </footer>
+          </article>
+          <article class="testimonial-card">
+            <div class="stars" aria-label="4 out of 5 stars">★★★★☆</div>
+            <blockquote>"The Spicy Diavola is perfection — just the right amount of heat. Arrived hot and perfectly boxed. Will be back."</blockquote>
+            <footer class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">A</div>
+              <div>
+                <strong>Amira T.</strong>
+                <small>Verified guest</small>
+              </div>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
 
-	<!-- Toasts and Utilities -->
-	<div id="toaster" class="toaster" aria-live="polite" aria-atomic="true"></div>
-	<button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">↑</button>
+    <!-- ======== ABOUT ======== -->
+    <section class="about-section" id="about" aria-label="About FORNO">
+      <div class="container about-inner">
+        <div class="about-image">
+          <img src="assets/pizza-3.jpeg" alt="Fresh pizza being prepared at FORNO" loading="lazy" />
+        </div>
+        <div class="about-content">
+          <p class="section-eyebrow">Our story</p>
+          <h2>From Dough to Fire</h2>
+          <p>FORNO was born from a simple obsession: the perfect pizza. Our founder Marco spent three years learning the craft in Naples before opening our first kitchen in 2012.</p>
+          <p>Every batch of dough slow-ferments for 48 hours. Every sauce is hand-crushed from San Marzano tomatoes. Every topping is added with intention. We believe pizza is not fast food — it's craft food.</p>
+          <div class="about-stats">
+            <div class="stat">
+              <strong>48h</strong>
+              <small>Slow-fermented dough</small>
+            </div>
+            <div class="stat">
+              <strong>480°C</strong>
+              <small>Stone oven temperature</small>
+            </div>
+            <div class="stat">
+              <strong>12+</strong>
+              <small>Years of craft</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-	<!-- Footer -->
-	<footer>
-		<p>Contact us: info@pizzamenu.com</p>
-	</footer>
+    <!-- ======== CONTACT ======== -->
+    <section class="contact-section" id="contact" aria-label="Contact and location">
+      <div class="container">
+        <div class="section-header">
+          <h2>Find Us</h2>
+          <p>Come in, or let us come to you.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <strong>Address</strong>
+                <p>14 Via della Fornace, Roma District<br>New York, NY 10001</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.86 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+              </div>
+              <div>
+                <strong>Phone</strong>
+                <p>+1 (212) 555-0147</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <strong>Email</strong>
+                <p>hello@forno-pizza.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <strong>Opening Hours</strong>
+                <p>Mon–Thu: 11:00 – 22:00<br>Fri–Sun: 11:00 – 23:30</p>
+              </div>
+            </div>
+          </div>
+          <div class="map-placeholder" role="img" aria-label="Map location placeholder for FORNO restaurant">
+            <div class="map-inner">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <p>14 Via della Fornace, Roma District<br>New York, NY 10001</p>
+              <small>Map for illustrative purposes — demo content</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-	<script src="script.js"></script>
+    <!-- ======== NEWSLETTER ======== -->
+    <section class="newsletter-section" aria-label="Newsletter signup">
+      <div class="container newsletter-inner">
+        <div class="newsletter-text">
+          <h2>Get the inside scoop</h2>
+          <p>New menu items, seasonal specials, and Friday deals — straight to your inbox. No spam, ever.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm" novalidate>
+          <label for="newsletterEmail" class="sr-only">Your email address</label>
+          <input type="email" id="newsletterEmail" placeholder="your@email.com" autocomplete="email" required aria-required="true" />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo footer-logo" aria-label="FORNO — Home">
+          <span class="logo-name">FORNO</span>
+          <span class="logo-sub">Artisan Pizza Kitchen</span>
+        </a>
+        <p>Stone-Baked. Handcrafted. Unforgettable. Serving New York since 2012 with the finest artisan pizzas.</p>
+        <div class="social-links">
+          <a href="#" aria-label="FORNO on Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="FORNO on Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="FORNO on TikTok">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+          </a>
+        </div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#specials">Specials</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-hours">
+        <h3>Hours</h3>
+        <ul>
+          <li><span>Mon–Thu</span><span>11:00 – 22:00</span></li>
+          <li><span>Friday</span><span>11:00 – 23:30</span></li>
+          <li><span>Sat–Sun</span><span>11:00 – 23:30</span></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact</h3>
+        <p>14 Via della Fornace<br>New York, NY 10001</p>
+        <p>+1 (212) 555-0147</p>
+        <p>hello@forno-pizza.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2024 FORNO Artisan Pizza Kitchen. All rights reserved. <span class="footer-demo-note">Demo project — fictional restaurant.</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======== CART DRAWER ======== -->
+  <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" role="complementary" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2>Your Order <span id="cartItemCount" aria-live="polite">(0)</span></h2>
+      <button class="icon-btn" id="cartCloseBtn" aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-drawer-body" id="cartDrawerBody">
+      <!-- cart items rendered by JS -->
+    </div>
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <!-- totals rendered by JS -->
+    </div>
+  </aside>
+
+  <!-- ======== PRODUCT CUSTOMIZATION MODAL ======== -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
+  <div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalPizzaName" aria-hidden="true">
+    <button class="modal-close icon-btn" id="modalCloseBtn" aria-label="Close product modal">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="product-modal-inner" id="productModalInner">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+
+  <!-- ======== CHECKOUT MODAL ======== -->
+  <div class="modal-backdrop checkout-backdrop" id="checkoutBackdrop" aria-hidden="true"></div>
+  <div class="checkout-modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" aria-hidden="true">
+    <button class="modal-close icon-btn" id="checkoutCloseBtn" aria-label="Close checkout">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="checkout-modal-inner">
+      <h2 id="checkoutTitle">Complete Your Order</h2>
+      <form id="checkoutForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="co_name">Full Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="co_name" name="name" autocomplete="name" required aria-required="true" placeholder="Marco Rossi" />
+          </div>
+          <div class="form-group">
+            <label for="co_phone">Phone Number <span aria-hidden="true">*</span></label>
+            <input type="tel" id="co_phone" name="phone" autocomplete="tel" required aria-required="true" placeholder="+1 (212) 555-0100" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="co_email">Email Address <span aria-hidden="true">*</span></label>
+          <input type="email" id="co_email" name="email" autocomplete="email" required aria-required="true" placeholder="you@example.com" />
+        </div>
+        <div class="form-group" id="addressGroup">
+          <label for="co_address">Delivery Address <span aria-hidden="true">*</span></label>
+          <input type="text" id="co_address" name="address" autocomplete="street-address" placeholder="123 Main St" />
+        </div>
+        <div class="form-row">
+          <div class="form-group" id="cityGroup">
+            <label for="co_city">City</label>
+            <input type="text" id="co_city" name="city" autocomplete="address-level2" placeholder="New York" />
+          </div>
+          <div class="form-group">
+            <label for="co_notes">Delivery Notes</label>
+            <input type="text" id="co_notes" name="notes" placeholder="Buzz 4B, leave at door…" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <fieldset class="radio-group">
+            <legend>Delivery Option</legend>
+            <label class="radio-label">
+              <input type="radio" name="delivery" value="delivery" checked /> Delivery
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="delivery" value="pickup" /> Pickup
+            </label>
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <fieldset class="radio-group">
+            <legend>Payment Method</legend>
+            <label class="radio-label">
+              <input type="radio" name="payment" value="cash" checked /> Cash on Delivery
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="payment" value="card" /> Card (Demo only)
+            </label>
+          </fieldset>
+          <p class="demo-note">⚠ Card payment is simulated — no real transaction is processed.</p>
+        </div>
+
+        <div class="checkout-summary" id="checkoutSummary"></div>
+
+        <button type="submit" class="btn btn-primary btn-full" id="placeOrderBtn">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======== ORDER SUCCESS MODAL ======== -->
+  <div class="modal-backdrop success-backdrop" id="successBackdrop" aria-hidden="true"></div>
+  <div class="success-modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" aria-hidden="true">
+    <div class="success-modal-inner">
+      <div class="success-icon" aria-hidden="true">✅</div>
+      <h2 id="successTitle">Order Confirmed!</h2>
+      <p>Thank you for your order. We're already working on it.</p>
+      <p class="order-ref">Order reference: <strong id="orderRef"></strong></p>
+      <p class="success-eta">Estimated delivery: <strong>25–35 minutes</strong></p>
+      <button class="btn btn-primary" id="successCloseBtn">Back to Menu</button>
+    </div>
+  </div>
+
+  <!-- ======== UTILITIES ======== -->
+  <div id="toaster" class="toaster" aria-live="polite" aria-atomic="false"></div>
+  <button id="scrollTopBtn" class="scroll-top" aria-label="Back to top" title="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="script.js"></script>
 </body>
 </html>
